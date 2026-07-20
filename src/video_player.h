@@ -27,6 +27,13 @@ public:
     virtual bool is_playing() = 0;
 
     virtual void update_frame() = 0;
+
+    virtual void set_playback_time(double playback_time) = 0;
+    virtual void seek_playback_fast(double playback_time) = 0;
+    virtual double get_playback_time() = 0;
+    virtual double get_playback_duration() = 0;
+    virtual void set_playback_speed(double playback_speed) = 0;
+    virtual double get_playback_speed() = 0;
     
 
 protected:

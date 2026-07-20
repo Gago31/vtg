@@ -13,7 +13,7 @@ void VideoPlayer::_bind_methods() {
     ADD_PROPERTY(PropertyInfo(Variant::STRING, "file_name"), "set_file_name", "get_file_name");
     
     // methods
-    ClassDB::bind_method(D_METHOD("set_looping"), &VideoPlayer::set_looping);
+    ClassDB::bind_method(D_METHOD("set_looping", "value"), &VideoPlayer::set_looping);
     ClassDB::bind_method(D_METHOD("is_looping"), &VideoPlayer::is_looping);
     ClassDB::bind_method(D_METHOD("play"), &VideoPlayer::play);
     ClassDB::bind_method(D_METHOD("pause"), &VideoPlayer::pause);
@@ -21,6 +21,13 @@ void VideoPlayer::_bind_methods() {
     ClassDB::bind_method(D_METHOD("is_playing"), &VideoPlayer::is_playing);
     ClassDB::bind_method(D_METHOD("update_frame"), &VideoPlayer::update_frame);
     ClassDB::bind_method(D_METHOD("get_texture"), &VideoPlayer::get_texture);
+
+    ClassDB::bind_method(D_METHOD("set_playback_time", "value"), &VideoPlayer::set_playback_time);
+    ClassDB::bind_method(D_METHOD("seek_playback_fast", "value"), &VideoPlayer::seek_playback_fast);
+    ClassDB::bind_method(D_METHOD("get_playback_time"), &VideoPlayer::get_playback_time);
+    ClassDB::bind_method(D_METHOD("get_playback_duration"), &VideoPlayer::get_playback_duration);
+    ClassDB::bind_method(D_METHOD("set_playback_speed", "value"), &VideoPlayer::set_playback_speed);
+    ClassDB::bind_method(D_METHOD("get_playback_speed"), &VideoPlayer::get_playback_speed);
 }
 
 VideoPlayer::VideoPlayer() {

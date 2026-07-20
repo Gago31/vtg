@@ -2,6 +2,7 @@
 
 #include "video_player.h"
 #include "video_player_soft.h"
+#include "video_stream_player_av1.h"
 
 //#if defined(__APPLE__)
 //#include "video_player_metal.h"
@@ -20,6 +21,7 @@ void initialize_vtg_module(ModuleInitializationLevel p_level) {
 
     GDREGISTER_ABSTRACT_CLASS(VideoPlayer);
     GDREGISTER_CLASS(VideoPlayerSoft);
+    GDREGISTER_CLASS(VideoStreamPlayerAv1);
     
 //#if defined(__APPLE__)   
 //    GDREGISTER_CLASS(VideoPlayerMetal);

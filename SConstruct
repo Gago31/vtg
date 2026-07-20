@@ -12,9 +12,28 @@ env = SConscript("submodules/godot-cpp/SConstruct")
 # - CPPDEFINES are for pre-processor defines
 # - LINKFLAGS are for linking flags
 
-env.Append(CPPPATH=["src/", "submodules/SAV1/include", "submodules/SAV1/subprojects/dav1d/include"])
-env.Append(LIBPATH=["submodules/SAV1/builddir", "submodules/SAV1/builddir/subprojects/opus/src", "submodules/SAV1/builddir/subprojects/dav1d/src"])
-env.Append(LIBS=["sav1", "dav1d", "opus"])
+env.Append(CPPPATH=["src/", "submodules/SAV1/include"])
+
+if env["platform"] == "windows" or env["platform"] == "android":
+    env.Append(CPPPATH=["submodules/SAV1/dependencies/x64-windows/include/dav1d"])
+    env.Append(CPPPATH=["submodules/SAV1/dependencies/x64-windows/include"])
+else:
+    env.Append(CPPPATH=["submodules/SAV1/subprojects/dav1d/include"])
+    # env.Append(CPPPATH=["submodules/SAV1/subprojects/SDL2/include"])
+
+if env["platform"] == "android":
+    env.Append(LIBPATH=[f"submodules/SAV1/builddir-android-{env['arch']}"])
+else:
+    env.Append(LIBPATH=["submodules/SAV1/builddir"])
+
+if env["platform"] == "windows":
+    env.Append(LIBPATH=["submodules/SAV1/dependencies/x64-windows/lib"])
+elif env["platform"] == "android":
+    env.Append(LIBPATH=[f"submodules/SAV1/builddir-android-{env['arch']}/subprojects/opus/src", f"submodules/SAV1/builddir-android-{env['arch']}/subprojects/dav1d/src", f"submodules/SAV1/dependencies/android/lib-{env['arch']}"])
+else:
+    env.Append(LIBPATH=["submodules/SAV1/builddir/subprojects/opus/src", "submodules/SAV1/builddir/subprojects/dav1d/src"])
+
+env.Append(LIBS=["sav1", "dav1d", "opus", "SDL2"])
 print("MSVC_VERSION:", env.get('MSVC_VERSION'))
 
 if env.get('MSVC_VERSION'):
@@ -23,7 +42,8 @@ if env.get('MSVC_VERSION'):
 sources = [
     "src/register_types.cpp",
     "src/video_player.cpp",
-    "src/video_player_soft.cpp"
+    "src/video_player_soft.cpp",
+    "src/video_stream_player_av1.cpp"
 ]
 
 if env["platform"] == "macos":

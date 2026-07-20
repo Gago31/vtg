@@ -4,5 +4,5 @@
 	branch = 4.5
 [submodule "SAV1"]
 	path = submodules/SAV1
-	url = https://github.com/zwodev/SAV1.git
+	url = https://github.com/Gago31/SAV1.git
 	branch = main
