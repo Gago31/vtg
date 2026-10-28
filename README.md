@@ -95,3 +95,73 @@ scons platform=macos arch=arm64 target=template_release
 scons platform=macos arch=arm64 target=template_debug
 
 ```
+
+## Building on Windows
+
+### Installing dependencies
+```
+python -m pip install scons
+```
+
+### Building godot-cpp
+```
+cd submodules/godot-cpp
+scons platform=windows target=template_release
+scons platform=windows target=template_debug
+cd ..\..
+
+```
+
+### Building SAV1
+```
+cd submodules/SAV1
+.\install_windows_deps.bat
+
+meson setup builddir
+meson compile -C .\builddir
+cd ..\..
+
+```
+
+### Building VTG
+```
+scons platform=windows target=template_release
+scons platform=windows target=template_debug
+
+```
+
+## Building for Android
+
+### Installing dependencies
+
+Follow the instructions of the official Godot documentation:
+https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_android.html
+
+
+### Building godot-cpp
+```
+cd submodules/godot-cpp
+scons platform=android arch=arm64 target=template_release
+scons platform=android arch=arm64 target=template_debug
+cd ../..
+
+```
+
+### Building SAV1
+```
+cd submodules/SAV1/subprojects
+./download.sh
+cd ..
+
+meson setup --default-library=static --cross-file ./android-cross-file.txt ./build-android
+meson compile -C ./build-android
+cd ../..
+
+```
+
+### Building VTG
+```
+scons platform=android arch=arm64 target=template_release
+scons platform=android arch=arm64 target=template_debug
+
+```

@@ -11,8 +11,6 @@ macos.debug = "res://addons/video_toolkit/bin/libvtg.macos.template_debug.framew
 macos.release = "res://addons/video_toolkit/bin/libvtg.macos.template_release.framework"
 windows.debug.x86_64 = "res://addons/video_toolkit/bin/libvtg.windows.template_debug.x86_64.dll"
 windows.release.x86_64 = "res://addons/video_toolkit/bin/libvtg.windows.template_release.x86_64.dll"
-android.debug.arm32 = "res://addons/video_toolkit/bin/libvtg.android.template_debug.arm32.so"
-android.release.arm32 = "res://addons/video_toolkit/bin/libvtg.android.template_release.arm32.so"
 android.debug.arm64 = "res://addons/video_toolkit/bin/libvtg.android.template_debug.arm64.so"
 android.release.arm64 = "res://addons/video_toolkit/bin/libvtg.android.template_release.arm64.so"
 
@@ -28,3 +26,10 @@ windows.release.x86_64 = {
 	"res://addons/video_toolkit/bin/SDL2.dll": ""
 }
 
+android.debug.arm64 = {
+	"res://addons/video_toolkit/bin/libsav1.so": ""
+}
+
+android.release.arm64 = {
+	"res://addons/video_toolkit/bin/libsav1.so": ""
+}
