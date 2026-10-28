@@ -7,8 +7,8 @@
 #include "video_player.h"
 #include "sav1.h"
 
-#define SDL_MAIN_HANDLED
-#include <SDL2/SDL.h>
+// #define SDL_MAIN_HANDLED
+// #include <SDL2/SDL.h>
 
 namespace godot {
 
@@ -43,8 +43,8 @@ private:
     Sav1Settings settings;
     Sav1Context context = {0};
 
-    SDL_AudioSpec audio_spec = {0};
-    SDL_AudioDeviceID audio_device;
+    // SDL_AudioSpec audio_spec = {0};
+    // SDL_AudioDeviceID audio_device;
 
     bool stopped = false;
     bool must_seek = false;
@@ -55,8 +55,8 @@ private:
     bool create_video_context();
     void process_video_frame();
     void process_audio_frame();
-    int initialize_sdl(Sav1Settings settings, SDL_AudioDeviceID *device_p);
-    void cleanup_sdl(SDL_AudioDeviceID audio_device);
+    // int initialize_sdl(Sav1Settings settings, SDL_AudioDeviceID *device_p);
+    // void cleanup_sdl(SDL_AudioDeviceID audio_device);
 };
 
 }

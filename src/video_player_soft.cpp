@@ -16,38 +16,38 @@ VideoPlayerSoft::VideoPlayerSoft() {
 
 VideoPlayerSoft::~VideoPlayerSoft() {
     sav1_destroy_context(&context);
-    cleanup_sdl(audio_device);
+    // cleanup_sdl(audio_device);
 }
 
 void VideoPlayerSoft::_bind_methods() {
     ClassDB::bind_method(D_METHOD("init_playback"), &VideoPlayerSoft::init_playback);
 }
 
-int VideoPlayerSoft::initialize_sdl(Sav1Settings settings, SDL_AudioDeviceID *device_p) {
-  SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO);
+// int VideoPlayerSoft::initialize_sdl(Sav1Settings settings, SDL_AudioDeviceID *device_p) {
+//   SDL_Init(SDL_INIT_TIMER | SDL_INIT_AUDIO);
 
-  // Define audio settings
-  SDL_AudioSpec desired = {0};
-  desired.freq = settings.frequency;
-  desired.format = AUDIO_S16SYS;
-  desired.channels = settings.channels;
-  desired.callback = NULL;
+//   // Define audio settings
+//   SDL_AudioSpec desired = {0};
+//   desired.freq = settings.frequency;
+//   desired.format = AUDIO_S16SYS;
+//   desired.channels = settings.channels;
+//   desired.callback = NULL;
 
-  // Create audio device
-  *device_p = SDL_OpenAudioDevice(NULL, 0, &desired, &audio_spec, 0);
-  if (*device_p == 0) {
-    return -1;
-  }
+//   // Create audio device
+//   *device_p = SDL_OpenAudioDevice(NULL, 0, &desired, &audio_spec, 0);
+//   if (*device_p == 0) {
+//     return -1;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
-void VideoPlayerSoft::cleanup_sdl(SDL_AudioDeviceID audio_device) {
-  SDL_PauseAudioDevice(audio_device, 1);
-  SDL_CloseAudioDevice(audio_device);
+// void VideoPlayerSoft::cleanup_sdl(SDL_AudioDeviceID audio_device) {
+//   SDL_PauseAudioDevice(audio_device, 1);
+//   SDL_CloseAudioDevice(audio_device);
 
-  SDL_Quit();
-}
+//   SDL_Quit();
+// }
 
 
 bool VideoPlayerSoft::create_video_context() {
@@ -70,8 +70,8 @@ bool VideoPlayerSoft::create_video_context() {
         return false;
     }
 
-    initialize_sdl(settings, &audio_device);
-    SDL_PauseAudioDevice(audio_device, 0);
+    // initialize_sdl(settings, &audio_device);
+    // SDL_PauseAudioDevice(audio_device, 0);
     
     return true;
 }
@@ -157,7 +157,7 @@ void VideoPlayerSoft::process_video_frame() {
 void VideoPlayerSoft::process_audio_frame() {
     Sav1AudioFrame *sav1_frame;
     sav1_get_audio_frame(&context, &sav1_frame);
-    SDL_QueueAudio(audio_device, sav1_frame->data, sav1_frame->size);
+    // SDL_QueueAudio(audio_device, sav1_frame->data, sav1_frame->size);
 }
 
 void VideoPlayerSoft::update_frame() {

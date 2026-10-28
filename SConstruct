@@ -22,18 +22,19 @@ else:
     # env.Append(CPPPATH=["submodules/SAV1/subprojects/SDL2/include"])
 
 if env["platform"] == "android":
-    env.Append(LIBPATH=[f"submodules/SAV1/builddir-android-{env['arch']}"])
+    env.Append(LIBPATH=[f"submodules/SAV1/build-android"])
 else:
     env.Append(LIBPATH=["submodules/SAV1/builddir"])
 
 if env["platform"] == "windows":
     env.Append(LIBPATH=["submodules/SAV1/dependencies/x64-windows/lib"])
 elif env["platform"] == "android":
-    env.Append(LIBPATH=[f"submodules/SAV1/builddir-android-{env['arch']}/subprojects/opus/src", f"submodules/SAV1/builddir-android-{env['arch']}/subprojects/dav1d/src", f"submodules/SAV1/dependencies/android/lib-{env['arch']}"])
+    env.Append(LIBPATH=[f"submodules/SAV1/build-android/subprojects/opus/src", f"submodules/SAV1/build-android/subprojects/dav1d/src", f"submodules/SAV1/build-android"])
 else:
     env.Append(LIBPATH=["submodules/SAV1/builddir/subprojects/opus/src", "submodules/SAV1/builddir/subprojects/dav1d/src"])
 
-env.Append(LIBS=["sav1", "dav1d", "opus", "SDL2"])
+env.Append(LIBS=["sav1", "dav1d", "opus"])
+# env.Append(LIBS=["sav1", "dav1d", "opus", "SDL2"])
 print("MSVC_VERSION:", env.get('MSVC_VERSION'))
 
 if env.get('MSVC_VERSION'):
